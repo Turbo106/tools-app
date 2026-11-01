@@ -236,6 +236,111 @@
   .intro-line{margin:22px auto 0;width:0;height:1px;background:var(--accent);opacity:.9}
   body.intro-on{overflow:hidden}
 
+
+  /* ================= 终端主题（覆盖层） ================= */
+  :root{
+    --bg:#070807; --surface:#0c0e0c; --raised:#111511; --active:#182018;
+    --text:#d3d9cf; --muted:#8b968a; --faint:#5d6a5e;
+    --line:#1d241d; --line-strong:#2f3a2f;
+    --accent:#e5b567; --danger:#c9705a; --ok:#7fb89a;
+    --hue-pub:#6fa8d6; --hue-major:#e5b567; --hue-prac:#7fb89a;
+    --mono:ui-monospace,"SFMono-Regular","Cascadia Mono","Cascadia Code",Menlo,Consolas,
+           "Liberation Mono","Courier New",monospace;
+  }
+  html,body{font-family:var(--mono);background:var(--bg)}
+  body{letter-spacing:0}
+  body::after{opacity:.028}
+
+  h1{font-family:var(--mono);font-size:21px;font-weight:600;letter-spacing:-.01em;color:var(--accent)}
+  h1::before{width:16px;height:16px;background:var(--accent)}
+  .meta{font-family:var(--mono);margin:-12px 0 18px 28px;color:var(--faint);font-size:11.5px}
+
+  /* 选项卡 = 命令行 */
+  .tabs{background:transparent;border:none;border-bottom:1px solid var(--line);
+    border-radius:0;padding:0 0 10px;margin-bottom:18px}
+  .ind{display:none}
+  .tab{font-family:var(--mono);font-size:13px;color:var(--faint);padding:0 2px;
+    letter-spacing:.02em}
+  .tab::before{content:"[";opacity:.5}
+  .tab::after{content:"]";opacity:.5}
+  .tab.on{color:var(--accent);font-weight:600}
+  .tab.on::before{content:"▸ [";opacity:1}
+  .tab.on::after{content:"]";opacity:.5}
+  .tab:active{transform:none}
+
+  /* 面板 */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:0;padding:16px}
+  .sumcard .cell + .cell{border-left:1px solid var(--line)}
+  .sum .v{font-family:var(--mono);font-size:28px;color:var(--accent);font-weight:500}
+  .sum .k{font-family:var(--mono);color:var(--faint);letter-spacing:.06em}
+
+  /* 区块标题带提示符 */
+  .label{font-family:var(--mono);color:var(--faint);font-size:12px;letter-spacing:.02em;
+    display:flex;align-items:center;gap:0;margin-bottom:10px}
+  .label::before{content:"> ";color:var(--accent);width:auto;height:auto;background:none;
+    border-radius:0;font-size:12px}
+
+  /* 输入 / 按钮 */
+  input[type=number],input[type=text],select{font-family:var(--mono);font-size:13.5px;
+    border-radius:0;border:1px solid var(--line-strong);background:#0a0c0a;color:var(--text)}
+  input::placeholder{color:#4a554a}
+  input:focus,select:focus{border-color:var(--accent);background:#0a0c0a}
+  .field::after{background:var(--accent);height:1px;bottom:0;left:0;right:0}
+  button{font-family:var(--mono);border-radius:0;background:transparent;color:var(--accent);
+    border:1px solid var(--line-strong);font-weight:500;letter-spacing:.04em}
+  button::before{content:"[ "}
+  button::after{content:" ]"}
+  button:active{background:var(--accent);color:#0a0c0a;transform:none;opacity:1}
+  .bar button{font-family:var(--mono);border:1px solid var(--line);color:var(--faint)}
+
+  /* 分类 chips */
+  .cat{font-family:var(--mono);border-radius:0;border-color:transparent;color:var(--faint);
+    padding:6px 0;margin-right:10px;font-size:12px}
+  .cat::before{content:"· ";}
+  .cat.on{background:transparent;color:var(--accent);font-weight:600}
+  .cat.on::before{content:"▸ ";}
+
+  /* 列表 */
+  li{border-bottom:1px solid var(--line)}
+  .li-t{font-family:var(--mono);font-size:13.5px}
+  .li-s{font-family:var(--mono);color:var(--faint)}
+  .amt{font-family:var(--mono);color:var(--accent)}
+  .chk{border-radius:2px;border-color:var(--line-strong)}
+  .chk.on{background:var(--accent);color:#0a0c0a}
+  .del{color:var(--faint)}
+  .empty{font-family:var(--mono);color:var(--faint);border:none}
+  .ctag{font-family:var(--mono);border-radius:0;background:transparent;color:var(--faint);
+    border:1px solid var(--line);padding:1px 6px}
+
+  /* 课表 */
+  .gridwrap{border-radius:0;border-color:var(--line);background:#090b09}
+  .hdr,.dhead{font-family:var(--mono);color:var(--faint);letter-spacing:.04em}
+  .dhead.today{background:none;color:var(--accent)}
+  .slotcell b{font-family:var(--mono);color:var(--muted);font-size:11px}
+  .slotcell i{font-family:var(--mono);color:var(--faint);font-size:9px}
+  .slotcell::after{background:var(--line-strong)}
+  .dh{border-bottom:1px solid #131813}
+  .dh.now{background:#161d16}
+  .cblock{border-radius:0;background:var(--raised);border:1px solid var(--line);
+    padding:5px 6px 5px 8px;font-family:var(--mono)}
+  .cblock .bn{font-family:var(--mono);font-size:10.5px;color:var(--text);font-weight:600}
+  .cblock .bt{font-family:var(--mono);color:var(--muted);font-size:9.5px}
+  .cblock .br{font-family:var(--mono);color:var(--faint);font-size:9.5px}
+  .nowline{background:var(--accent)}
+  .nowline::before{border-radius:0;width:4px;height:4px}
+
+  /* 开场：打字机 */
+  .intro-name{font-family:var(--mono);font-size:clamp(30px,9.5vw,44px);letter-spacing:0;
+    justify-content:flex-start;color:var(--accent);font-weight:600}
+  .intro-name .tw{white-space:pre}
+  .intro-name .cur{display:inline-block;width:.5em;height:1em;background:var(--accent);
+    margin-left:.06em;transform:translateY(.08em);animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .intro-sub{font-family:var(--mono);letter-spacing:.08em;color:var(--faint);
+    text-align:left;margin-top:16px;text-indent:0}
+  .intro-line{margin:18px 0 0;background:var(--accent);height:1px}
+  .intro-center{text-align:left;padding:0 26px}
+
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
     h1 span{opacity:1;transform:none}
@@ -769,19 +874,14 @@ function switchTab(next){
 }
 document.querySelectorAll('.tab').forEach(t => t.onclick = () => switchTab(t.dataset.tab));
 
-/* ---------- 开场动画 ---------- */
+/* ---------- 开场动画（终端打字机） ---------- */
 (function intro(){
   const el = document.getElementById('intro');
   if (!el) return;
   const NAME = '九转工具蛊';
-  const GLYPHS = '九转工具蛊火符阵炼丹药鼎器';
   const nameEl = document.getElementById('introName');
-  const spans = [...NAME].map(ch => {
-    const sp = document.createElement('span');
-    sp.textContent = ch;
-    nameEl.appendChild(sp);
-    return sp;
-  });
+  nameEl.innerHTML = '<span class="tw"></span><i class="cur"></i>';
+  const tw = nameEl.querySelector('.tw');
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const seen = sessionStorage.getItem('introSeen');
@@ -789,28 +889,20 @@ document.querySelectorAll('.tab').forEach(t => t.onclick = () => switchTab(t.dat
   sessionStorage.setItem('introSeen', '1');
   document.body.classList.add('intro-on');
 
-  const t = gsap.timeline({ defaults:{ ease:'power2.out' },
+  const t = gsap.timeline({ defaults:{ ease:'none' },
     onComplete(){ el.remove(); document.body.classList.remove('intro-on'); } });
 
-  /* 逐字：模糊升起 → 乱码解锁 → 定格 */
-  spans.forEach((sp, i) => {
-    const at = i * 0.11;
-    t.from(sp, { opacity:0, y:26, filter:'blur(14px)', duration:.55, ease:'power3.out' }, at);
-    const o = { p:0 };
-    t.to(o, { p:1, duration:.5, ease:'none',
-      onUpdate(){ if (Math.random() < .55) sp.textContent = GLYPHS[Math.floor(Math.random()*GLYPHS.length)]; },
-      onComplete(){ sp.textContent = NAME[i]; }
-    }, at + .34);
-  });
+  const o = { n:0 };
+  t.to(o, { n: NAME.length + 1, duration: .62, ease:'steps(' + NAME.length + ')',
+      onUpdate(){ tw.textContent = NAME.slice(0, Math.round(o.n)); } })
+   .fromTo('#introLine', { width:0 }, { width:'132px', duration:.5, ease:'power2.inOut' }, '-=0.05')
+   .to('#introSub', { opacity:1, duration:.45, ease:'power1.out' }, '-=.3')
+   .to({}, { duration:.5 })
+   .to('.cur', { opacity:0, duration:.2 }, '>-0.4')
+   .to('.intro-bands i', { scaleY:0, duration:.7, stagger:.06, ease:'power4.inOut' }, '>-0.1')
+   .to('.intro-center', { opacity:0, y:-10, duration:.35, ease:'power2.in' }, '<0.06')
+   .from('.tabs, .card', { opacity:0, y:14, duration:.45, stagger:.04, ease:'power3.out' }, '-=.3');
 
-  t.to('#introLine', { width:'104px', opacity:.85, duration:.55, ease:'power2.inOut' }, .78)
-   .to('#introSub', { opacity:1, duration:.5 }, .92)
-   .to({}, { duration:.42 })                        /* 停一下，让人看清 */
-   .to('.intro-bands i', { scaleY:0, duration:.75, stagger:.07, ease:'power4.inOut' }, '>-0.1')
-   .to('.intro-center', { opacity:0, y:-14, duration:.45, ease:'power2.in' }, '<0.08')
-   .from('.tabs, .card', { opacity:0, y:16, duration:.5, stagger:.045, ease:'power3.out' }, '-=.35');
-
-  /* 点一下直接看结尾 */
   el.addEventListener('pointerdown', () => t.progress(1));
 })();
 
