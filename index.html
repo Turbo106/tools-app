@@ -8,6 +8,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>九转工具蛊</title>
 <style>
+  @font-face{
+    font-family:"WenKaiSubset";
+    src:url("wenkai-subset.woff2") format("woff2");
+    font-weight:400 700;
+    font-display:swap;
+  }
   :root{
     /* 中性暗色：地面 / 表面 / 抬起 / 选中，靠明度分层，不用渐变和发光 */
     --bg:#0a0908; --surface:#121110; --raised:#1b1915; --active:#241f18;
@@ -246,6 +252,7 @@
     --hue-pub:#6fa8d6; --hue-major:#e5b567; --hue-prac:#7fb89a;
     --mono:ui-monospace,"SFMono-Regular","Cascadia Mono","Cascadia Code",Menlo,Consolas,
            "Liberation Mono","Courier New",monospace;
+    --book:"WenKaiSubset","LXGW WenKai","Kaiti SC",KaiTi,"楷体","Songti SC",STSong,serif;
   }
   html,body{font-family:var(--mono);background:var(--bg)}
   body{letter-spacing:0}
@@ -365,12 +372,12 @@
       radial-gradient(90% 60% at 50% 110%, #160e18 0%, transparent 60%),
       var(--bg)}
   html[data-theme="gothic"] body::after{opacity:.06}
-  html[data-theme="gothic"] h1{font-family:"Songti SC","STSong","Source Han Serif SC",serif;
+  html[data-theme="gothic"] h1{font-family:var(--book);
     font-weight:700;letter-spacing:.06em;color:var(--text);font-size:24px}
   html[data-theme="gothic"] h1::before{background:var(--accent);width:14px;height:14px}
   html[data-theme="gothic"] .meta{color:var(--faint);letter-spacing:.14em}
   html[data-theme="gothic"] .tabs{border-bottom:1px solid var(--line);background:transparent}
-  html[data-theme="gothic"] .tab{font-family:"Songti SC","STSong",serif;font-size:14px;
+  html[data-theme="gothic"] .tab{font-family:var(--book);font-size:14px;
     letter-spacing:.14em;color:var(--faint)}
   html[data-theme="gothic"] .tab::before,html[data-theme="gothic"] .tab::after{content:none}
   html[data-theme="gothic"] .tab.on{color:var(--accent);font-weight:700;
@@ -382,7 +389,7 @@
   html[data-theme="gothic"] .bar{background:linear-gradient(to top,rgba(8,6,10,.96) 55%,transparent)}
   html[data-theme="gothic"] .card{background:var(--surface);border:1px solid var(--line);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
-  html[data-theme="gothic"] .sum .v{font-family:"Songti SC","STSong",serif;color:var(--text);
+  html[data-theme="gothic"] .sum .v{font-family:var(--book);color:var(--text);
     font-size:30px;letter-spacing:.02em}
   html[data-theme="gothic"] button{font-family:inherit;border:1px solid var(--accent);
     color:var(--accent);background:transparent;letter-spacing:.12em}
@@ -394,7 +401,7 @@
   html[data-theme="gothic"] .cat.on{color:var(--accent)}
   html[data-theme="gothic"] .cat.on::before{content:""}
   html[data-theme="gothic"] .cblock{background:var(--raised);border-color:var(--line)}
-  html[data-theme="gothic"] .intro-name{font-family:"Songti SC","STSong",serif;
+  html[data-theme="gothic"] .intro-name{font-family:var(--book);
     letter-spacing:.1em;color:var(--text)}
   html[data-theme="gothic"] .intro-name .cur{background:var(--accent)}
   html[data-theme="gothic"] .intro-line{background:var(--accent)}
@@ -417,27 +424,27 @@
   html[data-theme="italy"] body::after{opacity:.05;mix-blend-mode:multiply}
   html[data-theme="italy"] .themer{background:rgba(255,255,255,.55);border-color:var(--line-strong)}
   html[data-theme="italy"] .themer button{color:var(--muted)}
-  html[data-theme="italy"] h1{font-family:Georgia,"Times New Roman","Songti SC",serif;
+  html[data-theme="italy"] h1{font-family:var(--book);
     font-weight:700;letter-spacing:-.01em;color:var(--text);font-size:27px;
     border-bottom:3px solid var(--text);padding-bottom:8px;align-items:flex-end}
   html[data-theme="italy"] h1::before{width:16px;height:16px;background:var(--accent);margin-bottom:6px}
   html[data-theme="italy"] .meta{color:var(--faint);letter-spacing:.1em;margin-top:-6px}
   html[data-theme="italy"] .tabs{border:none;border-bottom:2px solid var(--text);
     background:transparent;padding-bottom:0}
-  html[data-theme="italy"] .tab{font-family:Georgia,"Songti SC",serif;font-size:14px;
+  html[data-theme="italy"] .tab{font-family:var(--book);font-size:14px;
     letter-spacing:.1em;color:var(--faint);padding:6px 10px}
   html[data-theme="italy"] .tab::before,html[data-theme="italy"] .tab::after{content:none}
   html[data-theme="italy"] .tab.on{background:var(--accent);color:#fbf4e2;font-weight:700}
   html[data-theme="italy"] .card{background:var(--surface);border:1.5px solid var(--text);
     box-shadow:4px 4px 0 rgba(29,23,16,.85)}
-  html[data-theme="italy"] .sum .v{font-family:Georgia,"Times New Roman",serif;
+  html[data-theme="italy"] .sum .v{font-family:var(--book);
     color:var(--text);font-size:31px}
   html[data-theme="italy"] .sum .k{color:var(--muted);letter-spacing:.1em}
   html[data-theme="italy"] input[type=number],html[data-theme="italy"] input[type=text],
   html[data-theme="italy"] select{background:#fffdf6;border:1.5px solid var(--text);
     color:var(--text);font-family:inherit}
   html[data-theme="italy"] button{background:var(--text);color:#fbf4e2;border:1.5px solid var(--text);
-    font-family:Georgia,"Songti SC",serif;letter-spacing:.1em;box-shadow:3px 3px 0 var(--accent)}
+    font-family:var(--book);letter-spacing:.1em;box-shadow:3px 3px 0 var(--accent)}
   html[data-theme="italy"] button::before,html[data-theme="italy"] button::after{content:none}
   html[data-theme="italy"] button:active{transform:translate(3px,3px);box-shadow:none;opacity:1}
   html[data-theme="italy"] .bar button{background:transparent;color:var(--muted);
@@ -462,11 +469,79 @@
   html[data-theme="italy"] .empty{color:var(--faint)}
   html[data-theme="italy"] .foot{color:var(--faint)}
   html[data-theme="italy"] .intro-bands i{background:var(--bg)}
-  html[data-theme="italy"] .intro-name{font-family:Georgia,"Songti SC",serif;color:var(--text);
+  html[data-theme="italy"] .intro-name{font-family:var(--book);color:var(--text);
     letter-spacing:.02em}
   html[data-theme="italy"] .intro-name .cur{background:var(--accent)}
   html[data-theme="italy"] .intro-sub{color:var(--muted)}
   html[data-theme="italy"] .intro-line{background:var(--accent)}
+
+
+  /* ================= 纸质手账 ================= */
+  html[data-theme="paper"]{
+    --bg:#f7f1e3; --surface:#fffaf0; --raised:#f3ecd9; --active:#eadfc6;
+    --text:#2b2620; --muted:#6b6152; --faint:#8d8270;
+    --line:#ded2b8; --line-strong:#c3b494;
+    --accent:#b23a2e; --danger:#b23a2e; --ok:#4a5d43;
+    --hue-pub:#5d7480; --hue-major:#b23a2e; --hue-prac:#5f7350;
+  }
+  html[data-theme="paper"] body{background:var(--bg)}
+  html[data-theme="paper"] body::after{opacity:.035;mix-blend-mode:multiply}
+  html[data-theme="paper"] .themer{background:rgba(255,255,255,.6);border-color:var(--line-strong)}
+  html[data-theme="paper"] .themer button{color:var(--muted)}
+  html[data-theme="paper"] .themer button.on{background:var(--accent)}
+  html[data-theme="paper"] h1{font-family:var(--book);font-weight:600;letter-spacing:.04em;
+    color:var(--text);font-size:26px;align-items:center}
+  html[data-theme="paper"] h1::before{width:15px;height:15px;background:var(--accent);
+    transform:rotate(-3deg)}
+  html[data-theme="paper"] .meta::after{content:"手账";float:right;font-size:10px;
+    letter-spacing:.12em;color:var(--accent);border:1px solid var(--accent);
+    padding:2px 5px;transform:rotate(-3deg);opacity:.9;margin-top:-2px}
+  html[data-theme="paper"] .meta{color:var(--faint);letter-spacing:.06em;
+    border-bottom:1px dashed var(--line-strong);padding-bottom:9px}
+  html[data-theme="paper"] .tabs{background:transparent;border:none;border-bottom:1px solid var(--line-strong);
+    padding-bottom:6px}
+  html[data-theme="paper"] .tab{font-family:var(--book);font-size:14.5px;color:var(--faint);
+    letter-spacing:.08em}
+  html[data-theme="paper"] .tab::before,html[data-theme="paper"] .tab::after{content:none}
+  html[data-theme="paper"] .tab.on{color:var(--accent);font-weight:600;
+    box-shadow:inset 0 -2px 0 var(--accent)}
+  html[data-theme="paper"] .card{background:var(--surface);border:1px solid var(--line);
+    border-radius:6px;box-shadow:none}
+  html[data-theme="paper"] .sum .v{font-family:var(--book);color:var(--text);font-size:29px}
+  html[data-theme="paper"] .sum .k{color:var(--muted);letter-spacing:.12em}
+  html[data-theme="paper"] input[type=number],html[data-theme="paper"] input[type=text],
+  html[data-theme="paper"] select{background:#fffdf7;border:1px solid var(--line-strong);
+    color:var(--text);border-radius:6px;font-family:inherit}
+  html[data-theme="paper"] input:focus,html[data-theme="paper"] select:focus{border-color:var(--accent)}
+  html[data-theme="paper"] button{background:var(--text);color:#fbf6ea;border:none;
+    border-radius:6px;font-family:var(--book);letter-spacing:.06em}
+  html[data-theme="paper"] button::before,html[data-theme="paper"] button::after{content:none}
+  html[data-theme="paper"] .bar{background:linear-gradient(to top,rgba(247,241,227,.98) 60%,rgba(247,241,227,0))}
+  html[data-theme="paper"] .bar button{background:transparent;color:var(--muted);
+    border:1px solid var(--line-strong)}
+  html[data-theme="paper"] .label{color:var(--muted);letter-spacing:.14em}
+  html[data-theme="paper"] .label::before{content:"";width:12px;height:3px;background:var(--accent)}
+  html[data-theme="paper"] .cat{color:var(--muted);padding:5px 8px;margin-right:6px;
+    border-radius:4px}
+  html[data-theme="paper"] .cat::before{content:""}
+  html[data-theme="paper"] .cat.on{background:var(--text);color:#fbf6ea}
+  html[data-theme="paper"] li{border-bottom:1px dashed var(--line-strong)}
+  html[data-theme="paper"] .chk{border-radius:4px;border-color:var(--line-strong)}
+  html[data-theme="paper"] .chk.on{background:var(--accent);color:#fff}
+  html[data-theme="paper"] .gridwrap{border:1px solid var(--line-strong);background:#fffdf7}
+  html[data-theme="paper"] .cblock{background:#fffdf7;border:1px solid var(--line);
+    border-radius:4px}
+  html[data-theme="paper"] .cblock .bn{color:var(--text);font-family:var(--book);font-size:11.5px}
+  html[data-theme="paper"] .cblock .bt{color:var(--muted)}
+  html[data-theme="paper"] .cblock .br{color:var(--faint)}
+  html[data-theme="paper"] .wstep,html[data-theme="paper"] .wback{background:transparent;
+    border:1px solid var(--line-strong);color:var(--text);box-shadow:none}
+  html[data-theme="paper"] .intro-bands i{background:var(--bg)}
+  html[data-theme="paper"] .intro-name{font-family:var(--book);color:var(--text);letter-spacing:.06em}
+  html[data-theme="paper"] .intro-name .cur{background:var(--accent)}
+  html[data-theme="paper"] .intro-sub{color:var(--muted)}
+  html[data-theme="paper"] .intro-line{background:var(--accent)}
+  html[data-theme="paper"] .foot{color:var(--faint)}
 
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
@@ -480,6 +555,7 @@
   <button data-th="terminal">终端</button>
   <button data-th="gothic">暗黑</button>
   <button data-th="italy">意式</button>
+  <button data-th="paper">手账</button>
 </div>
 <div id="intro">
   <div class="intro-bands"><i></i><i></i><i></i></div>
