@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#08090d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>小账本 · 待办 · 课表</title>
+<title>九转工具蛊</title>
 <style>
   :root{
     --bg:#08090d; --text:#eef0f6; --muted:#8a91a0;
@@ -225,7 +225,7 @@
 </style>
 </head>
 <body>
-<h1 id="title">小账本 · 待办</h1>
+<h1 id="title">九转工具蛊</h1>
 
 <div class="tabs">
   <span class="ind"></span>
@@ -348,30 +348,33 @@ const COLORS = [
 ];
 
 /* 本学期课表（按教务系统录入，可自行修改） */
+const SEED_VER = 'f2026-1';
 const SEED = [
-  {name:'钢琴小组课（一）_01', teacher:'陈思远', room:'博雅楼303', dow:1, s1:3, s2:5, weeks:'3-18'},
-  {name:'大学英语（雅思英语）（一）_05', teacher:'Sabrina Lin', room:'博雅楼217', dow:1, s1:6, s2:7, weeks:'8'},
+  {name:'钢琴小组课（一）_01', teacher:'陈思远', room:'博雅楼303', dow:1, s1:3, s2:5, weeks:'3-4'},
+  {name:'大学英语（雅思英语）（一）_05', teacher:'Sabrina Lin', room:'博雅楼217', dow:1, s1:6, s2:7, weeks:'3'},
   {name:'大学英语（雅思英语）（一）_05', teacher:'Sabrina Lin', room:'公共教学楼301', dow:1, s1:6, s2:7, weeks:'4-17'},
-  {name:'中华民族共同体概论_02', teacher:'郭媛', room:'公共教学楼109', dow:1, s1:8, s2:10, weeks:'8-9'},
-  {name:'大学生思想文化素养_02', teacher:'宝艳丽', room:'公共教学楼109', dow:1, s1:8, s2:9, weeks:'10-18'},
+  {name:'中华民族共同体概论_02', teacher:'彭谦', room:'公共教学楼109', dow:1, s1:8, s2:10, weeks:'3-9'},
+  {name:'大学生思想文化素养_02', teacher:'宝艳园', room:'公共教学楼109', dow:1, s1:8, s2:9, weeks:'10-18'},
 
-  {name:'大学英语（雅思英语）（一）_05', teacher:'Sabrina Lin', room:'博雅楼302', dow:2, s1:1, s2:2, weeks:'4-5'},
+  {name:'大学英语（雅思英语）（一）_05', teacher:'Sabrina Lin', room:'博文楼302', dow:2, s1:1, s2:2, weeks:'4-5'},
   {name:'大学英语（雅思英语）（一）_05', teacher:'Sabrina Lin', room:'公共教学楼301', dow:2, s1:1, s2:2, weeks:'7-17'},
-  {name:'中国音乐史_01', teacher:'郑艺娟', room:'博雅楼404', dow:2, s1:6, s2:7, weeks:'3-18'},
+  {name:'中国音乐史_01', teacher:'郭艺婧', room:'博雅楼404', dow:2, s1:6, s2:7, weeks:'3-18'},
   {name:'人工智能素养_02', teacher:'杨国胜', room:'公共教学楼509', dow:2, s1:8, s2:10, weeks:'7-18'},
 
   {name:'音乐基础理论与视唱练耳（一）_01', teacher:'南思羽', room:'博雅楼404', dow:3, s1:3, s2:4, weeks:'3-18'},
   {name:'音乐基础理论与视唱练耳（一）_01', teacher:'南思羽', room:'博雅楼301', dow:3, s1:6, s2:7, weeks:'3-4'},
-  {name:'中华民族共同体概论_02', teacher:'郭媛', room:'公共教学楼109', dow:3, s1:8, s2:10, weeks:'8-9'},
-  {name:'大学生思想文化素养_02', teacher:'宝艳丽', room:'公共教学楼109', dow:3, s1:8, s2:9, weeks:'10-18'},
+  {name:'中华民族共同体概论_02', teacher:'彭谦', room:'公共教学楼109', dow:3, s1:8, s2:10, weeks:'3-7'},
+  {name:'大学生思想文化素养_02', teacher:'宝艳园', room:'公共教学楼109', dow:3, s1:8, s2:9, weeks:'10-18'},
 
   {name:'人工智能素养_02', teacher:'杨国胜', room:'公共教学楼216', dow:4, s1:1, s2:2, weeks:'6-14'},
-  {name:'中国音乐史_01', teacher:'郑艺娟', room:'博雅楼404', dow:4, s1:3, s2:4, weeks:'3-4'},
-  {name:'声乐小组课（一）_01', teacher:'郑艺娟', room:'博雅楼301', dow:4, s1:6, s2:7, weeks:'3-5'},
-  {name:'声乐小组课（一）_01', teacher:'郑艺娟', room:'博雅楼301', dow:4, s1:8, s2:10, weeks:'3-18'},
+  {name:'中国音乐史_01', teacher:'郭艺婧', room:'博雅楼404', dow:4, s1:3, s2:4, weeks:'3-4'},
+  {name:'音乐小组课（一）_01', teacher:'郭艺婧', room:'博雅楼301', dow:4, s1:6, s2:7, weeks:'3-5'},
+  {name:'音乐小组课（一）_01', teacher:'郭艺婧', room:'博雅楼301', dow:4, s1:8, s2:10, weeks:'3-18'},
 
   {name:'钢琴小组课（一）_01', teacher:'陈思远', room:'博雅楼303', dow:5, s1:3, s2:5, weeks:'3-18'},
-  {name:'大学体育（一）_04', teacher:'宋文华', room:'运动场游泳馆1楼', dow:5, s1:11, s2:12, weeks:'8-18'}
+  {name:'音乐小组课（一）_01', teacher:'郭艺婧', room:'博雅楼301', dow:5, s1:6, s2:7, weeks:'3-5'},
+  {name:'音乐小组课（一）_01', teacher:'郭艺婧', room:'博雅楼301', dow:5, s1:8, s2:10, weeks:'3-18'},
+  {name:'大学体育（一）_04', teacher:'李文华', room:'运动场游泳馆1楼', dow:5, s1:11, s2:12, weeks:'3-18'}
 ];
 
 const store = {
@@ -381,9 +384,11 @@ const store = {
 let acct = store.get('acct', []);
 let todos = store.get('todos', []);
 let courses = store.get('courses', null);
-if (!Array.isArray(courses)) {
+const seedVer = localStorage.getItem('seedVer');
+if (!Array.isArray(courses) || seedVer !== SEED_VER) {
   courses = SEED.map((c, i) => ({ id: Date.now() + i, ...c }));
   store.set('courses', courses);
+  localStorage.setItem('seedVer', SEED_VER);
 }
 let week = null;
 
@@ -606,7 +611,8 @@ function renderGrid(){
     });
     const laneCount = Math.max(1, lanes.length);
     items.forEach(it => {
-      const top = (it.s1 - 1) * 44 + 2;
+      const HDR = 32;                       /* 表头行高 */
+      const top = HDR + (it.s1 - 1) * 44 + 2;
       const height = (it.s2 - it.s1 + 1) * 44 - 4;
       const w = 100 / laneCount;
       const left = it._lane * w;
