@@ -35,6 +35,8 @@
   h1::before{content:"";width:22px;height:22px;flex:none;background:var(--accent);
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 8h16l-1.6 6.2A4 4 0 0 1 14.5 17h-5A4 4 0 0 1 5.6 14.2z' fill='black'/%3E%3Crect x='2.5' y='6' width='19' height='1.8' rx='.9' fill='black'/%3E%3Crect x='8' y='17' width='1.8' height='4' rx='.9' fill='black'/%3E%3Crect x='14.2' y='17' width='1.8' height='4' rx='.9' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
     mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 8h16l-1.6 6.2A4 4 0 0 1 14.5 17h-5A4 4 0 0 1 5.6 14.2z' fill='black'/%3E%3Crect x='2.5' y='6' width='19' height='1.8' rx='.9' fill='black'/%3E%3Crect x='8' y='17' width='1.8' height='4' rx='.9' fill='black'/%3E%3Crect x='14.2' y='17' width='1.8' height='4' rx='.9' fill='black'/%3E%3C/svg%3E") center/contain no-repeat}
+  .meta{margin:-10px 0 16px 32px;font-size:12px;color:var(--faint);letter-spacing:.02em;
+    font-variant-numeric:tabular-nums}
   h1 span{display:inline-block;opacity:0;transform:translateY(10px);
     animation:charIn .5s var(--ease) forwards;color:var(--text)}
   @keyframes charIn{to{opacity:1;transform:none}}
@@ -96,11 +98,13 @@
   .cat.on{color:#171208;border-color:transparent;background:var(--accent)}
   .cat:active{transform:scale(.94)}
 
-  .sum{display:flex;gap:10px;margin-bottom:12px}
-  .sum .card{flex:1;margin:0;padding:14px}
-  .sum .k{font-size:11.5px;color:var(--muted);margin-bottom:6px;letter-spacing:.5px}
-  .sum .v{font-size:30px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--text);
-    letter-spacing:-.03em;line-height:1.15}
+  .sumcard{display:grid;grid-template-columns:1fr 1fr;padding:0;margin-bottom:14px;overflow:hidden}
+  .sumcard .cell{padding:16px 18px}
+  .sumcard .cell + .cell{border-left:1px solid var(--line)}
+  .sum .k{font-size:11.5px;color:var(--muted);margin-bottom:7px;letter-spacing:.12em}
+  .sum .v{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:29px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--text);
+    letter-spacing:-.02em;line-height:1.15}
   .sum .k{font-size:12px;letter-spacing:.04em}
   .sum .v.flash{animation:flashIn .45s var(--spring)}
   @keyframes flashIn{40%{transform:scale(1.09);filter:brightness(1.5)}}
@@ -178,8 +182,10 @@
   .tcol{width:46px;flex:none;border-right:1px solid var(--line)}
   .hdr{height:32px;display:flex;align-items:center;justify-content:center;
     font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);font-weight:600}
-  .slotcell{height:var(--rowh);border-bottom:1px solid rgba(255,255,255,.045);
+  .slotcell{position:relative;height:var(--rowh);border-bottom:1px solid rgba(255,255,255,.045);
     display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1px}
+  .slotcell::after{content:"";position:absolute;right:0;top:50%;width:5px;height:1px;
+    background:var(--line-strong)}
   .slotcell b{font-size:11.5px;color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
   .slotcell i{font-size:9.5px;color:var(--faint);font-style:normal;font-variant-numeric:tabular-nums}
   .dcol{flex:1;min-width:102px;position:relative;border-right:1px solid rgba(255,255,255,.05)}
@@ -189,6 +195,10 @@
   .dhead.today{color:#fff;background:linear-gradient(180deg,rgba(124,140,255,.22),transparent)}
   .dh{height:var(--rowh);border-bottom:1px solid rgba(255,255,255,.045)}
   .dh.now{background:rgba(124,140,255,.07)}
+  .nowline{position:absolute;left:0;right:0;height:1px;background:var(--accent);
+    z-index:3;opacity:.85;pointer-events:none}
+  .nowline::before{content:"";position:absolute;left:-2px;top:-2px;width:5px;height:5px;
+    border-radius:50%;background:var(--accent)}
   .cblock{position:absolute;border-radius:6px;padding:5px 6px 5px 9px;overflow:hidden;
     background:var(--raised);border:1px solid var(--line);
     display:flex;flex-direction:column;justify-content:center;
@@ -243,6 +253,7 @@
 </div>
 
 <h1 id="title">九转工具蛊</h1>
+<p class="meta" id="meta"></p>
 
 <div class="tabs">
   <span class="ind"></span>
@@ -252,9 +263,9 @@
 </div>
 
 <section id="acct" class="view">
-  <div class="sum">
-    <div class="card"><div class="k">今日支出</div><div class="v" id="sumDay">¥0</div></div>
-    <div class="card"><div class="k">本月支出</div><div class="v" id="sumMon">¥0</div></div>
+  <div class="card sum sumcard">
+    <div class="cell"><div class="k">今日支出</div><div class="v" id="sumDay">¥0</div></div>
+    <div class="cell"><div class="k">本月支出</div><div class="v" id="sumMon">¥0</div></div>
   </div>
   <div class="card">
     <div class="row">
@@ -639,6 +650,13 @@ function renderGrid(){
         <div class="br">${esc(it.room || '')}</div>
       </div>`;
     });
+    if (d === td && nowSlot > 0){
+      const [na, nb] = SLOTS[nowSlot - 1];
+      const toMin = t => +t.slice(0,2) * 60 + +t.slice(3,5);
+      const frac = Math.min(1, Math.max(0, (toMin(hm) - toMin(na)) / (toMin(nb) - toMin(na))));
+      const y = 32 + (nowSlot - 1) * 44 + frac * 44;
+      html += `<div class="nowline" style="top:${y}px"></div>`;
+    }
     html += '</div>';
   }
   grid.innerHTML = html;
@@ -806,6 +824,14 @@ document.querySelectorAll('.card').forEach(c => {
 });
 
 week = currentWeek();
+/* 标题下的一行：今天日期 + 第几周 */
+(function meta(){
+  const d = new Date();
+  const el = document.getElementById('meta');
+  if (!el) return;
+  el.textContent = `${d.getMonth()+1} 月 ${d.getDate()} 日 · 周${'日一二三四五六'[d.getDay()]} · 第 ${currentWeek()} 周 · 2026–2027 第一学期`;
+})();
+
 initCats(); renderAcct(); renderTodo(); initSlotSelects(); renderWeek(); renderGrid();
 </script>
 </body>
