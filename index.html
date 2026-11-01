@@ -10,18 +10,20 @@
 <style>
   :root{
     /* 中性暗色：地面 / 表面 / 抬起 / 选中，靠明度分层，不用渐变和发光 */
-    --bg:#0b0b0d; --surface:#141417; --raised:#1a1a1f; --active:#22222a;
-    --text:#ffffff; --muted:#b4b4b4; --faint:#8a8a90;
-    --line:#26262c; --line-strong:#35353e;
-    --accent:#d9a441;                 /* 黄铜，唯一的强调色：用在数据与当前状态 */
-    --danger:#e5566f; --ok:#3fc07a;
-    --hue-pub:#4f8cff; --hue-major:#e0a13c; --hue-prac:#3fc07a;
+    --bg:#0a0908; --surface:#121110; --raised:#1b1915; --active:#241f18;
+    --text:#f2eee5; --muted:#a39c92; --faint:#7a746b;
+    --line:#26231e; --line-strong:#3b352b;
+    --accent:#cfa958;                 /* 黄铜，唯一的强调色 */
+    --danger:#cf7265; --ok:#8fae94;
+    --hue-pub:#7d9dc4; --hue-major:#cfa958; --hue-prac:#8fae94;
     --ease:cubic-bezier(.22,.68,0,1); --spring:cubic-bezier(.34,1.56,.64,1);
     --dir:1; --rowh:44px;
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0;color:var(--text);background:var(--bg);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  body::after{content:"";position:fixed;inset:0;z-index:150;pointer-events:none;opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   body{
     background:var(--bg);
     padding:calc(env(safe-area-inset-top) + 16px) 12px calc(env(safe-area-inset-bottom) + 118px);
@@ -29,7 +31,10 @@
   }
   h1{font-size:20px;margin:2px 0 16px;font-weight:700;letter-spacing:.4px;
     display:flex;flex-wrap:wrap;align-items:baseline}
-  h1{font-size:24px;letter-spacing:-.02em}
+  h1{font-size:26px;letter-spacing:-.03em;margin:6px 0 18px;display:flex;align-items:center;gap:10px}
+  h1::before{content:"";width:22px;height:22px;flex:none;background:var(--accent);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 8h16l-1.6 6.2A4 4 0 0 1 14.5 17h-5A4 4 0 0 1 5.6 14.2z' fill='black'/%3E%3Crect x='2.5' y='6' width='19' height='1.8' rx='.9' fill='black'/%3E%3Crect x='8' y='17' width='1.8' height='4' rx='.9' fill='black'/%3E%3Crect x='14.2' y='17' width='1.8' height='4' rx='.9' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 8h16l-1.6 6.2A4 4 0 0 1 14.5 17h-5A4 4 0 0 1 5.6 14.2z' fill='black'/%3E%3Crect x='2.5' y='6' width='19' height='1.8' rx='.9' fill='black'/%3E%3Crect x='8' y='17' width='1.8' height='4' rx='.9' fill='black'/%3E%3Crect x='14.2' y='17' width='1.8' height='4' rx='.9' fill='black'/%3E%3C/svg%3E") center/contain no-repeat}
   h1 span{display:inline-block;opacity:0;transform:translateY(10px);
     animation:charIn .5s var(--ease) forwards;color:var(--text)}
   @keyframes charIn{to{opacity:1;transform:none}}
@@ -46,8 +51,8 @@
   .tab.on{color:#0b0b0d;font-weight:600}
   .tab:active{transform:scale(.97)}
 
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;
-    padding:16px;margin-bottom:12px;
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:18px;margin-bottom:14px;
     transition:border-color .25s var(--ease)}
   .card.lift{border-color:var(--line-strong)}
 
@@ -59,8 +64,8 @@
     background:var(--accent);transform:scaleX(0);
     transform-origin:left;transition:transform .38s var(--ease);border-radius:2px}
   .field:focus-within::after{transform:scaleX(1)}
-  input[type=number],input[type=text],select{width:100%;padding:12px;
-    border-radius:8px;border:1px solid var(--line-strong);background:#0f0f12;outline:none;
+  input[type=number],input[type=text],select{width:100%;padding:13px;
+    border-radius:9px;border:1px solid var(--line-strong);background:#0e0d0b;outline:none;
     transition:border-color .25s var(--ease), background .25s var(--ease);
     -webkit-appearance:none;appearance:none}
   input:focus,select:focus{border-color:var(--accent);background:#0f0f12}
@@ -71,8 +76,9 @@
     background-position:calc(100% - 18px) 22px,calc(100% - 13px) 22px;
     background-size:5px 5px,5px 5px;background-repeat:no-repeat}
 
-  button{border:none;border-radius:8px;padding:12px 18px;
-    background:var(--text);color:#0b0b0d;font-weight:600;cursor:pointer;white-space:nowrap;
+  button{border:none;border-radius:9px;padding:13px 18px;
+    background:var(--accent);color:#171208;font-weight:600;cursor:pointer;white-space:nowrap;
+    letter-spacing:.01em;
     position:relative;overflow:hidden;
     transition:transform .2s var(--ease), opacity .2s var(--ease)}
   button:active{transform:scale(.97);opacity:.85}
@@ -87,13 +93,15 @@
     cursor:pointer;
     transition:background .28s var(--ease), color .28s var(--ease),
                border-color .28s var(--ease), transform .32s var(--spring), box-shadow .28s}
-  .cat.on{color:#0b0b0d;border-color:transparent;background:var(--text)}
+  .cat.on{color:#171208;border-color:transparent;background:var(--accent)}
   .cat:active{transform:scale(.94)}
 
   .sum{display:flex;gap:10px;margin-bottom:12px}
   .sum .card{flex:1;margin:0;padding:14px}
   .sum .k{font-size:11.5px;color:var(--muted);margin-bottom:6px;letter-spacing:.5px}
-  .sum .v{font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--text);letter-spacing:-.02em}
+  .sum .v{font-size:30px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--text);
+    letter-spacing:-.03em;line-height:1.15}
+  .sum .k{font-size:12px;letter-spacing:.04em}
   .sum .v.flash{animation:flashIn .45s var(--spring)}
   @keyframes flashIn{40%{transform:scale(1.09);filter:brightness(1.5)}}
 
@@ -121,8 +129,8 @@
     transition:color .2s, background .2s, transform .25s var(--spring)}
   .del:active{color:var(--danger);background:rgba(255,107,129,.14);transform:scale(.86)}
 
-  .empty{text-align:center;color:#5f6675;padding:26px 12px;font-size:13.5px;
-    border:1px dashed rgba(255,255,255,.09);border-radius:14px;margin:4px 0;
+  .empty{text-align:center;color:var(--faint);padding:22px 12px 10px;font-size:13px;
+    margin:0;line-height:1.7;
     animation:fadeUp .4s var(--ease) both}
   @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -136,11 +144,14 @@
   .done .li-t{color:#5f6675;background-size:100% 1.5px}
   .done .amt{opacity:.5}
 
+  .foot{text-align:center;color:var(--faint);font-size:11.5px;letter-spacing:.02em;
+    margin:26px 0 6px;line-height:1.6}
   .bar{position:fixed;left:0;right:0;bottom:0;padding:12px 12px calc(env(safe-area-inset-bottom) + 12px);
     background:linear-gradient(to top,rgba(8,9,13,.96) 55%,transparent);
     display:flex;gap:9px;max-width:760px;margin:0 auto}
-  .bar button{flex:1;background:var(--surface);color:var(--muted);
-    border:1px solid var(--line);box-shadow:none;font-weight:500;font-size:13px}
+  .bar button{flex:1;background:transparent;color:var(--muted);
+    border:1px solid var(--line-strong);box-shadow:none;font-weight:500;font-size:13px;
+    backdrop-filter:none}
   .bar button:active{background:var(--raised);color:#fff}
 
   .label{font-size:12px;color:var(--muted);margin-bottom:8px;letter-spacing:.6px;
@@ -169,8 +180,8 @@
     font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);font-weight:600}
   .slotcell{height:var(--rowh);border-bottom:1px solid rgba(255,255,255,.045);
     display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1px}
-  .slotcell b{font-size:11px;color:#cdd4e6;font-weight:600}
-  .slotcell i{font-size:9px;color:#5f6675;font-style:normal}
+  .slotcell b{font-size:11.5px;color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+  .slotcell i{font-size:9.5px;color:var(--faint);font-style:normal;font-variant-numeric:tabular-nums}
   .dcol{flex:1;min-width:102px;position:relative;border-right:1px solid rgba(255,255,255,.05)}
   .dcol:last-child{border-right:none}
   .dhead{height:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -202,15 +213,17 @@
   .hide{display:none}
 
   /* ——— 开场 ——— */
-  #intro{position:fixed;inset:0;z-index:200;background:var(--bg);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
-    will-change:transform}
-  .intro-name{font-size:clamp(34px,10.5vw,54px);font-weight:600;letter-spacing:-.035em;
-    line-height:1;color:var(--text);display:flex}
-  .intro-name span{display:inline-block}
-  .intro-sub{margin-top:16px;font-size:13px;color:var(--faint);letter-spacing:.02em}
-  .intro-line{position:absolute;bottom:calc(50% - 72px);width:104px;height:2px;
-    background:var(--accent);transform-origin:left center}
+  #intro{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center}
+  .intro-bands{position:absolute;inset:0;display:flex}
+  .intro-bands i{flex:1;background:var(--bg);transform-origin:top center}
+  .intro-center{position:relative;z-index:2;text-align:center;padding:0 20px}
+  .intro-name{font-size:clamp(38px,12vw,62px);font-weight:600;letter-spacing:-.045em;
+    line-height:1;color:var(--text);display:flex;justify-content:center}
+  .intro-name span{display:inline-block;min-width:.98em;text-align:center;
+    will-change:transform,filter,opacity}
+  .intro-sub{margin-top:18px;font-size:12.5px;color:var(--faint);letter-spacing:.32em;
+    text-indent:.32em;opacity:0}
+  .intro-line{margin:22px auto 0;width:0;height:1px;background:var(--accent);opacity:.9}
   body.intro-on{overflow:hidden}
 
   @media (prefers-reduced-motion: reduce){
@@ -221,9 +234,12 @@
 </head>
 <body>
 <div id="intro">
-  <div class="intro-name" id="introName"></div>
-  <div class="intro-sub">记账 · 待办 · 课表</div>
-  <div class="intro-line"></div>
+  <div class="intro-bands"><i></i><i></i><i></i></div>
+  <div class="intro-center">
+    <div class="intro-name" id="introName"></div>
+    <div class="intro-sub" id="introSub">记 账 · 待 办 · 课 表</div>
+    <div class="intro-line" id="introLine"></div>
+  </div>
 </div>
 
 <h1 id="title">九转工具蛊</h1>
@@ -320,6 +336,8 @@
   </div>
 </section>
 
+<p class="foot">数据只存在这台设备 · 换机前记得导出备份</p>
+
 <div class="bar">
   <button onclick="exportData()">导出备份</button>
   <button onclick="importData()">导入备份</button>
@@ -340,7 +358,7 @@ const SLOTS = [
   ['20:45','21:30']
 ];
 /* 三个分类色：公共课 / 专业课 / 实践课 */
-const HUES = { pub:'#4f8cff', major:'#e0a13c', prac:'#3fc07a' };
+const HUES = { pub:'#7d9dc4', major:'#cfa958', prac:'#8fae94' };
 
 /* 本学期课表（按教务系统录入，可自行修改） */
 const SEED_VER = 'f2026-1';
@@ -624,6 +642,10 @@ function renderGrid(){
     html += '</div>';
   }
   grid.innerHTML = html;
+  if (window.gsap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    gsap.fromTo('.cblock', { opacity:0, y:10, scale:.97 },
+      { opacity:1, y:0, scale:1, duration:.38, stagger:.02, ease:'power2.out', overwrite:true });
+  }
   renderSchedList();
 }
 
@@ -718,6 +740,10 @@ function switchTab(next){
     if (next === 'acct') renderAcct();
     else if (next === 'todo') renderTodo();
     else { renderWeek(); renderGrid(); }
+    if (window.gsap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      gsap.fromTo('#' + next + ' .card, #' + next + ' .sum .card',
+        { opacity:0, y:14 }, { opacity:1, y:0, duration:.4, stagger:.045, ease:'power2.out', overwrite:true });
+    }
   }, 170);
   document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x.dataset.tab === next));
   cur = next;
@@ -729,33 +755,45 @@ document.querySelectorAll('.tab').forEach(t => t.onclick = () => switchTab(t.dat
 (function intro(){
   const el = document.getElementById('intro');
   if (!el) return;
+  const NAME = '九转工具蛊';
+  const GLYPHS = '九转工具蛊火符阵炼丹药鼎器';
   const nameEl = document.getElementById('introName');
-  nameEl.innerHTML = [...'九转工具蛊'].map(ch => `<span>${ch}</span>`).join('');
+  const spans = [...NAME].map(ch => {
+    const sp = document.createElement('span');
+    sp.textContent = ch;
+    nameEl.appendChild(sp);
+    return sp;
+  });
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const seen = sessionStorage.getItem('introSeen');
-  if (reduce || seen || !window.gsap){
-    el.remove();
-    return;
-  }
+  if (reduce || seen || !window.gsap){ el.remove(); return; }
   sessionStorage.setItem('introSeen', '1');
   document.body.classList.add('intro-on');
 
-  const chars = el.querySelectorAll('.intro-name span');
-  const tl = gsap.timeline({
-    onComplete(){ el.remove(); document.body.classList.remove('intro-on'); }
-  });
-  tl.from(chars, {y:26, opacity:0, stagger:.06, duration:.55, ease:'power3.out'})
-    .from('.intro-sub', {opacity:0, y:8, duration:.4, ease:'power2.out'}, '-=.3')
-    .from('.intro-line', {scaleX:0, duration:.55, ease:'power2.inOut'}, '-=.25')
-    .to('.intro-line', {scaleX:0, transformOrigin:'right center', duration:.4, ease:'power2.in'}, '+=.45')
-    .to(chars, {y:-16, opacity:0, stagger:.045, duration:.32, ease:'power2.in'}, '-=.3')
-    .to('.intro-sub', {opacity:0, duration:.22}, '-=.25')
-    .to(el, {yPercent:-100, duration:.65, ease:'power3.inOut'}, '-=.05')
-    .from('.tabs, .card', {y:14, opacity:0, stagger:.05, duration:.42, ease:'power2.out'}, '-=.5');
+  const t = gsap.timeline({ defaults:{ ease:'power2.out' },
+    onComplete(){ el.remove(); document.body.classList.remove('intro-on'); } });
 
-  /* 点一下直接跳到结尾 */
-  el.addEventListener('pointerdown', () => tl.progress(1));
+  /* 逐字：模糊升起 → 乱码解锁 → 定格 */
+  spans.forEach((sp, i) => {
+    const at = i * 0.11;
+    t.from(sp, { opacity:0, y:26, filter:'blur(14px)', duration:.55, ease:'power3.out' }, at);
+    const o = { p:0 };
+    t.to(o, { p:1, duration:.5, ease:'none',
+      onUpdate(){ if (Math.random() < .55) sp.textContent = GLYPHS[Math.floor(Math.random()*GLYPHS.length)]; },
+      onComplete(){ sp.textContent = NAME[i]; }
+    }, at + .34);
+  });
+
+  t.to('#introLine', { width:'104px', opacity:.85, duration:.55, ease:'power2.inOut' }, .78)
+   .to('#introSub', { opacity:1, duration:.5 }, .92)
+   .to({}, { duration:.42 })                        /* 停一下，让人看清 */
+   .to('.intro-bands i', { scaleY:0, duration:.75, stagger:.07, ease:'power4.inOut' }, '>-0.1')
+   .to('.intro-center', { opacity:0, y:-14, duration:.45, ease:'power2.in' }, '<0.08')
+   .from('.tabs, .card', { opacity:0, y:16, duration:.5, stagger:.045, ease:'power3.out' }, '-=.35');
+
+  /* 点一下直接看结尾 */
+  el.addEventListener('pointerdown', () => t.progress(1));
 })();
 
 document.getElementById('amt').addEventListener('keydown', e => { if (e.key === 'Enter') addAcct() });
