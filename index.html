@@ -411,7 +411,7 @@ function parseWeeks(str, maxW = 20){
   return [...set].filter(w => w >= 1 && w <= maxW);
 }
 /* 第 N 周 → 日期区间 */
-const TERM_START = new Date('2026-09-07T00:00:00');
+const TERM_START = new Date('2026-08-31T00:00:00');
 function currentWeek(){
   const days = Math.floor((Date.now() - TERM_START.getTime()) / 86400000);
   return Math.min(20, Math.max(1, Math.floor(days / 7) + 1));
